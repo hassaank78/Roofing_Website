@@ -276,7 +276,7 @@ const MASTER_SERVICES_CATALOG = {
       "Transparent material recommendations"
     ],
     ctaText: "Explore Residential Roofing",
-    image: "assets/images/Residential_Roofing_Service.png",
+    image: "assets/images/optimized/Residential_Roofing_Service.webp",
     forTypes: ["residential", "both"]
   },
 
@@ -292,7 +292,7 @@ const MASTER_SERVICES_CATALOG = {
       "Flashing repairs around chimneys & skylights"
     ],
     ctaText: "Request a Roof Repair Estimate",
-    image: "assets/images/Roof_Repair_Service.png",
+    image: "assets/images/optimized/Roof_Repair_Service.webp",
     forTypes: ["residential", "commercial", "both"]
   },
 
@@ -308,7 +308,7 @@ const MASTER_SERVICES_CATALOG = {
       "Scheduled commercial roof reviews"
     ],
     ctaText: "Discuss Commercial Roofing",
-    image: "assets/images/Commercial_Roofing_Service.png",
+    image: "assets/images/optimized/Commercial_Roofing_Service.webp",
     forTypes: ["commercial", "both"]
   },
 
@@ -324,7 +324,7 @@ const MASTER_SERVICES_CATALOG = {
       "Gutter guard protection options"
     ],
     ctaText: "Request a Gutter Estimate",
-    image: "assets/images/Gutter_Drainage_Service.png",
+    image: "assets/images/optimized/Gutter_Drainage_Service.webp",
     forTypes: ["residential", "commercial", "both"]
   },
 
@@ -340,7 +340,7 @@ const MASTER_SERVICES_CATALOG = {
       "Objective, pressure-free summary"
     ],
     ctaText: "Schedule an Inspection",
-    image: "assets/images/Roof_Inspection.png",
+    image: "assets/images/optimized/Roof_Inspection.webp",
     forTypes: ["residential", "commercial", "both"]
   }
 };
@@ -440,7 +440,7 @@ const DEFAULT_PROJECTS = [
     system: "Dimensional Asphalt Shingles",
     material: "Architectural Shingles",
     desc: "High-definition architectural shingles installed with synthetic underlayment, ice barrier, and continuous ridge ventilation.",
-    image: "assets/images/Architectural Asphalt Shingle Installation.png",
+    image: "assets/images/optimized/Architectural Asphalt Shingle Installation.webp",
     badge: "Representative Work"
   },
   {
@@ -452,7 +452,7 @@ const DEFAULT_PROJECTS = [
     system: "Precision Leak Diagnostics",
     material: "Step Flashing & Pipe Boot Collars",
     desc: "Diagnosed active leak around valley and chimney counter-flashing. Installed new neoprene collars and sealed transitions.",
-    image: "assets/images/Targeted Leak Repair & Flashing Tune-Up.png",
+    image: "assets/images/optimized/Targeted Leak Repair & Flashing Tune-Up.webp",
     badge: "Targeted Repair"
   },
   {
@@ -464,7 +464,7 @@ const DEFAULT_PROJECTS = [
     system: "Standing Seam Metal",
     material: "24-Gauge Steel",
     desc: "Durable standing seam residential metal roof installation featuring concealed fasteners and engineered weather resistance.",
-    image: "assets/images/Concealed Fastener Metal Roof Installation.png",
+    image: "assets/images/optimized/Concealed Fastener Metal Roof Installation.webp",
     badge: "Architectural Metal"
   },
   {
@@ -476,7 +476,7 @@ const DEFAULT_PROJECTS = [
     system: "Single-Ply Membrane System",
     material: "Commercial TPO / Membrane",
     desc: "Commercial building roof repair and perimeter drainage remediation to prevent ponding water and protect interior operations.",
-    image: "assets/images/Low-Slope Commercial Membrane System.png",
+    image: "assets/images/optimized/Low-Slope Commercial Membrane System.webp",
     badge: "Commercial System"
   }
 ];

@@ -78,15 +78,25 @@
     const presets = window.ROOFING_PRESETS || {};
     
     // 1. Identify base preset
-    const businessSlug = params.get('business') || 'default';
+    const requestedBusiness = (params.get('business') || 'default').trim().toLowerCase();
+    const businessSlug = Object.keys(presets).find(key =>
+      key.toLowerCase() === requestedBusiness ||
+      String(presets[key].slug || '').trim().toLowerCase() === requestedBusiness ||
+      String(presets[key].name || '').trim().toLowerCase() === requestedBusiness
+    ) || 'default';
     const basePreset = presets[businessSlug] || presets['default'] || {};
-    currentPresetKey = presets[businessSlug] ? businessSlug : 'default';
+    currentPresetKey = businessSlug;
 
     // 2. Clone preset as baseline
     const config = JSON.parse(JSON.stringify(basePreset));
 
     // 3. Apply Explicit Query Parameter Overrides
-    if (params.has('name')) config.name = params.get('name').trim();
+    if (params.has('name')) {
+      config.name = params.get('name').trim();
+      if (!params.has('description') && basePreset.description && basePreset.name) {
+        config.description = basePreset.description.split(basePreset.name).join(config.name);
+      }
+    }
     if (params.has('phone')) config.phone = params.get('phone').trim();
     if (params.has('email')) config.email = params.get('email').trim();
     if (params.has('city')) config.city = params.get('city').trim();
@@ -177,6 +187,18 @@
     const typeLabel = config.businessType === 'commercial' ? 'Commercial Roofing' : (config.businessType === 'residential' ? 'Residential Roofing' : 'Roofing Solutions');
     const cityStr = config.city ? ` in ${config.city}${config.state ? ', ' + config.state : ''}` : '';
     document.title = `${config.name} | ${typeLabel}${cityStr}`;
+
+    const shareTitle = `${config.name} | ${typeLabel}${cityStr}`;
+    const shareDescription = config.description || `Explore roofing services and request an estimate from ${config.name}.`;
+    const socialMeta = (selector, value) => {
+      const meta = document.querySelector(selector);
+      if (meta) meta.setAttribute('content', value);
+    };
+    socialMeta('meta[property="og:title"]', shareTitle);
+    socialMeta('meta[property="og:description"]', shareDescription);
+    socialMeta('meta[property="og:image"]', new URL('assets/images/optimized/Hero_Image.webp', window.location.href).href);
+    socialMeta('meta[name="twitter:title"]', shareTitle);
+    socialMeta('meta[name="twitter:description"]', shareDescription);
 
     // Top Bar Tagline
     const topBarTagline = document.getElementById('topBarTagline');
@@ -505,7 +527,7 @@
 
         card.innerHTML = `
           <div class="service-img-wrap">
-            <img src="${escapeHTML(service.image)}" alt="${escapeHTML(service.title)}" class="service-img" loading="lazy">
+            <img src="${escapeHTML(service.image)}" alt="${escapeHTML(service.title)}" class="service-img" loading="lazy" decoding="async">
           </div>
           <div class="service-body">
             <h3 class="service-title">${escapeHTML(service.title)}</h3>
@@ -751,7 +773,7 @@
       card.className = 'project-card';
       card.innerHTML = `
         <div class="project-image-wrap">
-          <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)}" class="project-image" loading="lazy">
+          <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)}" class="project-image" loading="lazy" decoding="async">
           <span class="project-badge">${escapeHTML(p.categoryLabel)}</span>
         </div>
         <div class="project-info">
