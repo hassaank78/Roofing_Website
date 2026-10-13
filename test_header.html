@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe id="f" src="http://127.0.0.1:8899/index.html" width="375" height="812" style="border:none;"></iframe>
+<div id="out"></div>
+<script>
+window.onload = function() {
+    setTimeout(function() {
+        var doc = document.getElementById('f').contentDocument;
+        var brand = doc.getElementById('brandLink').getBoundingClientRect();
+        var actions = doc.querySelector('.header-actions').getBoundingClientRect();
+        var toggle = doc.getElementById('mobileNavToggle').getBoundingClientRect();
+        var btn = doc.querySelector('.header-actions .open-modal-btn');
+        var btnStyle = btn ? doc.defaultView.getComputedStyle(btn).display : 'null';
+        var toggleStyle = toggle ? doc.defaultView.getComputedStyle(doc.getElementById('mobileNavToggle')).display : 'null';
+        
+        var res = {
+            brandRect: { l: brand.left, r: brand.right, w: brand.width },
+            actionsRect: { l: actions.left, r: actions.right, w: actions.width },
+            toggleRect: { l: toggle.left, r: toggle.right, w: toggle.width },
+            btnDisplay: btnStyle,
+            toggleDisplay: toggleStyle
+        };
+        document.getElementById('out').innerText = 'HEADER_DEBUG: ' + JSON.stringify(res);
+    }, 1000);
+};
+</script>
+</body>
+</html>

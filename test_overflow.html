@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe id="f" src="http://127.0.0.1:8899/index.html" width="375" height="812" style="border:none;"></iframe>
+<div id="out"></div>
+<script>
+window.onload = function() {
+    setTimeout(function() {
+        try {
+            var doc = document.getElementById('f').contentDocument;
+            var win = document.getElementById('f').contentWindow;
+            var bad = [];
+            doc.querySelectorAll('*').forEach(function(el) {
+                var r = el.getBoundingClientRect();
+                if (r.right > 375.5) {
+                    bad.push(el.tagName + (el.id ? '#' + el.id : '') + (el.className ? '.' + el.className : '') + ' [r=' + Math.round(r.right) + ',w=' + Math.round(r.width) + ']');
+                }
+            });
+            document.getElementById('out').innerText = 'TOTAL_OVERFLOWS: ' + bad.length + '\n' + bad.slice(0, 20).join('\n');
+        } catch(e) {
+            document.getElementById('out').innerText = 'ERR: ' + e.message;
+        }
+    }, 1500);
+};
+</script>
+</body>
+</html>
